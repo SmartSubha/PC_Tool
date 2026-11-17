@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Type Of Cyber Seva</title>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #001f3f 0%, #083358 100%);
+            --secondary-color: #0074D9;
+            --success-color: #2ecc71;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding-bottom: 90px;
+        }
+
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 3.5rem 1rem;
+            box-shadow: 0 10px 30px rgba(0, 31, 63, 0.2);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-left: 8px solid var(--secondary-color);
+            padding: 1.8rem;
+            margin-bottom: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            border: 1px solid #93c5fd;
+        }
+
+        .tools-section h3 {
+            color: #0369a1;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .tools-section ul {
+            list-style: none;
+        }
+
+        .tools-section li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+            font-size: 1.05rem;
+            color: #0c4a6e;
+        }
+
+        .tools-section li::before {
+            content: "🛠️";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .tools-section a {
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px dashed #0284c7;
+            transition: all 0.2s;
+        }
+
+        .tools-section a:hover {
+            color: #0369a1;
+            border-bottom-style: solid;
+        }
+
+        /* Advanced Accordion Layout */
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .accordion-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #cbd5e1;
+        }
+
+        .accordion-header {
+            background: #ffffff;
+            color: #0f172a;
+            padding: 1.5rem 1.8rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+            background-color: #f8fafc;
+            color: var(--secondary-color);
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: #f1f5f9;
+            color: #083358;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .accordion-item.active .accordion-header::after {
+            content: '−';
+            transform: rotate(180deg);
+            color: var(--secondary-color);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #ffffff;
+        }
+
+        .inner-content {
+            padding: 2rem;
+        }
+
+        /* Content Styling */
+        .inner-content h4 {
+            color: #1e3a8a;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 0.6rem;
+        }
+
+        .inner-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .inner-content p, .inner-content ul {
+            color: #334155;
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .inner-content ul {
+            padding-left: 1.8rem;
+        }
+
+        .inner-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        /* Beautiful Dynamic Badge Links */
+        .portal-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #001f3f 0%, #0074D9 100%);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 116, 217, 0.2);
+            margin-top: 0.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .portal-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 116, 217, 0.3);
+            opacity: 0.95;
+        }
+
+        .portal-link::after {
+            content: " ↗";
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+
+        footer {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        footer p {
+            letter-spacing: 0.8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>All Type Of Cyber Seva</h1>
+        <p>A-Z Digital Work Guidebook (Aadhaar-Free Services)</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Smart Tools Section -->
+        <div class="tools-section">
+            <h3>🧰 গুরুত্বপূর্ণ সাইবার টুলস ও ট্রিকস</h3>
+            <ul>
+                <li><strong>ফটো ও সাইজ রিডিউসার:</strong> <a href="https://www.reduceimages.com" target="_blank">ReduceImages.com</a> বা <a href="https://www.picresize.com" target="_blank">picresize.com</a> দিয়ে চাকরির ফর্মের ফটো (২০-৫০ KB) ও সই (১০-২০ KB) এক ক্লিকে সাইজ করা যায়।</li>
+                <li><strong>PDF অল-ইন-ওয়ান:</strong> <a href="https://www.ilovepdf.com" target="_blank">ilovepdf.com</a> ব্যবহার করে একাধিক স্ক্যান করা ইমেজ মার্জ, কমপ্রেস বা ওয়ার্ড ফাইলে কনভার্ট করা যায়।</li>
+                <li><strong>ইমেজ এডিটিং:</strong> ছবি বা সই দ্রুত ক্রপ ও সাইজ রিডিউস করতে <a href="https://www.iloveimg.com" target="_blank">ILoveIMG</a> পোর্টাল ব্যবহার করতে পারো।</li>
+            </ul>
+        </div>
+
+        <!-- Accordion Items for Services -->
+        <div class="accordion">
+
+            <!-- 1. Voter ID -->
+            <div class="accordion-item">
+                <div class="accordion-header">১. ভোটার কার্ড আবেদন ও সংশোধন (Voter ID Services)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>১৮ বছর বা তার বেশি বয়সী নাগরিকদের ভোটাধিকার দেওয়ার জন্য এবং দেশের একটি অত্যন্ত শক্তিশালী অফিশিয়াল আইডেন্টিটি প্রুফ ও অ্যাড্রেস প্রুফ তৈরি করার জন্য এটি করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://voters.eci.gov.in" target="_blank" class="portal-link">Voters' Services Portal (voters.eci.gov.in)</a>
+                        
+                        <h4>📝 ফর্মের নাম:</h4>
+                        <ul>
+                            <li>নতুন ভোটার: <strong>Form 6</strong></li>
+                            <li>সংশোধন বা ঠিকানা বদল: <strong>Form 8</strong></li>
+                        </ul>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস:</h4>
+                        <ul>
+                            <li><strong>বয়সের প্রমাণ (Age Proof):</strong> বার্থ সার্টিফিকেট, মাধ্যমিকের অ্যাডমিট কার্ড বা প্যান কার্ড।</li>
+                            <li><strong>ঠিকানার প্রমাণ (Address Proof):</strong> বাবার ভোটার কার্ড, ইলেকট্রিক বিল, বা ডিশ ডিড।</li>
+                            <li><strong>ছবি:</strong> এক kopi পাসপোর্ট সাইজ রঙিন ছবি।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>পোর্টালে মোবাইল নম্বর দিয়ে একটি অ্যাকাউন্ট খোলো -> Form 6 (নতুন) বা Form 8 (সংশোধন) সিলেক্ট করো -> কাস্টমারের সমস্ত ডিটেইলস নির্ভুলভাবে টাইপ করো -> এজ প্রুফ ও অ্যাড্রেস প্রুফ স্ক্যান করে আপলোড করো (২ MB-র মধ্যে JPG/PDF) -> পাসপোর্ট সাইজ ছবি আপলোড করো -> সাবমিট করে <strong>Reference Number</strong> জেনারেট করো এবং কাস্টমারকে রসিদ প্রিন্ট করে দাও।</p>
+                        
+                        <h4>💰 সরকারি খরচ ও ক্যাফে চার্জ:</h4>
+                        <p>সরকারি খরচ একদম <strong>₹০ (বিনামূল্যে)</strong>। সাইবার ক্যাফেতে অনলাইন ফর্ম ফিলাপ, প্রিন্টিং ও লেমিনেশন চার্জ বাবদ ₹২০ - ₹৩০ নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Passport -->
+            <div class="accordion-item">
+                <div class="accordion-header">২. নতুন পাসপোর্ট আবেদন (Passport Application)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>ভারতের বাইরে অন্য যেকোনো দেশে ভ্রমণ, শিক্ষা বা চাকরির উদ্দেশ্যে যাওয়ার জন্য ভারত সরকারের তরফ থেকে আন্তর্জাতিক ট্রাভেল ডকুমেন্ট ও নাগরিকত্বের প্রধান প্রমাণ হিসেবে এটি ইস্যু করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://passportindia.gov.in" target="_blank" class="portal-link">Passport Seva (passportindia.gov.in)</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস (আধার ছাড়া):</h4>
+                        <ul>
+                            <li><strong>জন্ম তারিখের প্রমাণ:</strong> বার্থ সার্টিফিকেট বা মাধ্যমিকের অ্যাডমিট।</li>
+                            <li><strong>ঠিকানার প্রমাণ:</strong> বাবা/مায়ের পাসপোর্ট, ব্যাংকের পাসবই (ফটো সহ ও স্ট্যাম্প মারা), অথবা ইলেকট্রিক বিল।</li>
+                            <li><strong>শিক্ষাগত যোগ্যতা (Non-ECR এর জন্য):</strong> মাধ্যমিক বা তার ওপরের পাস সার্টিফিকেট।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>পোর্টালে রেজিস্ট্রেশন করে লগইন করো -> "Apply for Fresh Passport" এ ক্লিক করো -> কাস্টমারের ব্যক্তিগত ও ফ্যামিলি ডিটেইলস এন্ট্রি করো -> নিকটবর্তী <strong>PSK (Passport Seva Kendra)</strong> এবং অ্যাপয়েন্টমেন্টের ডেট ও টাইম স্লট বুক করো -> অনলাইনে ফি পেমেন্ট করো -> পেমেন্ট সাকসেসফুল হলে অ্যাপ্লিকেশন রসিদটি প্রিন্ট করে সব অরিজিনাল ডকুমেন্ট সহ কাস্টমারকে নির্দিষ্ট ডেটে PSK-তে পাঠাও।</p>
+                        
+                        <h4>💰 সরকারি খরচ:</h4>
+                        <p>সাধারণ পাসপোর্টের (৩৬ পেজ) জন্য অফিসিয়াল ফি <strong>₹১,৫০০</strong> (অনলাইনে পেমেন্ট করতে হয়)। ক্যাফে চার্জ সাধারণত ₹১০০ - ₹১৫০ নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Driving Licence -->
+            <div class="accordion-item">
+                <div class="accordion-header">৩. ড্রাইভিং লাইসেন্স (Driving Licence - RTO)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>যেকোনো ভারতীয় পাবলিক রোডে বৈধভাবে বাইক, গাড়ি বা যেকোনো মোটর ভেহিকেল ড্রাইভ করার আইনি অধিকার পাওয়ার জন্য এটি বাধ্যতামূলকভাবে তৈরি করতে হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://sarathi.parivahan.gov.in" target="_blank" class="portal-link">Sarathi Parivahan (sarathi.parivahan.gov.in)</a>
+                        
+                        <h4>📝 ধাপ ও প্রয়োজনীয় ডকুমেন্টস:</h4>
+                        <ul>
+                            <li><strong>ধাপ ১: লার্নার লাইসেন্স (LL):</strong> এটি প্রথম ৬ মাসের জন্য দেওয়া হয়। ডকুমেন্টস: বয়সের প্রমাণ (বার্থ/অ্যাডমিট) এবং ঠিকানার প্রমাণ (ভোটার কার্ড)। <br><em>সরকারি খরচ: প্রায় ₹২৪০ - ₹৩০০।</em></li>
+                            <li><strong>ধাপ ২: পার্মানেন্ট ড্রাইভিং লাইসেন্স (DL):</strong> লার্নার পাওয়ার ১ মাস পর আবেদন করা যায়। ডকুমেন্টস: লার্নার লাইসেন্স নম্বর এবং আরটিও-তে ড্রাইভিং টেস্টের স্লট বুকিং রসিদ। <br><em>সরকারি খরচ: প্রায় ₹৭০০ - ₹১,০০০ (স্মার্ট কার্ড ফি সহ)।</em></li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>সারথি পোর্টালে গিয়ে নিজের রাজ্য সিলেক্ট করো -> প্রথমে "Apply for Learner Licence" এ যাও -> ফর্ম ফিলাপ করে ডকুমেন্টস আপলোড করো -> লার্নার টেস্টের ফি অনলাইন পে করো -> লার্নার টেস্ট পাস করার ১ মাস পর পুনরায় সাইটে এসে "Apply for New Driving Licence" এ ক্লিক করো -> লার্নার নম্বর দিয়ে ফর্মটি ভেরিফাই করো এবং আরটিও অফিসে গিয়ে লাইভ ড্রাইভিং টেস্ট দেওয়ার জন্য স্লট বুক করো ও ফাইনাল ফি পে করো।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Vehicle Tax & e-Challan -->
+            <div class="accordion-item">
+                <div class="accordion-header">৪. গাড়ির ট্যাক্স ও ট্রাফিক চালান পেমেন্ট (Vehicle Tax & e-Challan)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন/পেমেন্ট করা হয়?</h4>
+                        <p>গাড়ির রোড ট্যাক্স নির্দিষ্ট সময়ে না দিলে গাড়ি অবৈধ হয়ে যায় এবং রাস্তায় ট্রাফিক আইন ভাঙলে যে ফাইন বা ই-চালান ইস্যু হয়, তা আইনি ঝামেলা ও কোর্ট কেস এড়ানোর জন্য অনলাইনে দ্রুত মেটাতে হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল (ট্যাক্স):</h4>
+                        <a href="https://vahan.parivahan.gov.in" target="_blank" class="portal-link">Vahan Parivahan Portal</a>
+                        
+                        <h4>🌐 অফিশিয়াল পোর্টাল (চালান):</h4>
+                        <a href="https://echallan.parivahan.gov.in" target="_blank" class="portal-link">e-Challan Parivahan Portal</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডিটেইলস:</h4>
+                        <ul>
+                            <li>গাড়ির রেজিস্ট্রেশন নম্বর (Vehicle Number)।</li>
+                            <li>চেসিস নম্বর (Chassis Number) এবং ইঞ্জিন নম্বরের শেষ ৫টি ডিজিট (গাড়ির RC বইতে থাকে)।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p><strong>ট্যাক্স পেমেন্ট:</strong> বাহন পোর্টালে গাড়ির নম্বর দিয়ে লগইন করো -> "Pay Your Tax" অপশনে যাও -> চেসিস নম্বর ভেরিফাই করো -> নেট ব্যাংকিং বা UPI দিয়ে বকেয়া ট্যাক্স পে করো এবং রসিদ প্রিন্ট করো। <br><strong>চালান পেমেন্ট:</strong> চালান পোর্টালে গাড়ির নম্বর বা চালান নম্বর দাও -> ওটিপি ভেরিফাই করে পেন্ডিং ফাইনটি স্ক্রিনে দেখো -> অনলাইনে পেমেন্ট গেটওয়ে দিয়ে ফাইন মেটাও এবং কাস্টমারকে চালান ক্লিয়ারেন্স রসিদ দাও।</p>
+                        
+                        <h4>💰 খরচ:</h4>
+                        <p>চালানের ফাইন বা ট্যাক্সের অ্যামাউন্ট যা সিস্টেমে লাইভ দেখাবে সেটাই। আলাদা কোনো সরকারি ফি নেই, ক্যাফে চার্জ ₹২০ - ₹৩০ নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Job Applications -->
+            <div class="accordion-item">
+                <div class="accordion-header">৫. সরকারি ও চাকরির পরীক্ষার ফর্ম ফিলাপ (Job Applications)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>বিভিন্ন সরকারি দপ্তর (যেমন রেল, স্টাফ সিলেকশন, ব্যাংক বা রাজ্য সরকার)-এর শূন্যপদে স্থায়ী চাকরিতে নিয়োগ প্রক্রিয়ার পরীক্ষায় বসার জন্য অনলাইন ফর্ম ফিলাপ করতে হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল লিংক সমূহ:</h4>
+                        <p>পরীক্ষার বিজ্ঞপ্তি অনুযায়ী বোর্ড আলাদা হয়। প্রধান লিংকগুলি নিচে দেওয়া হলো:</p>
+                        <a href="https://wbpsc.gov.in" target="_blank" class="portal-link">WBPSC Portal</a>
+                        <a href="https://ssc.gov.in" target="_blank" class="portal-link">SSC Portal</a>
+                        <a href="https://rrbcdg.gov.in" target="_blank" class="portal-link">RRB Portal</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস ও তথ্য:</h4>
+                        <ul>
+                            <li>অল্টারনে티브 আইডি প্রুফ (ভোটার বা প্যান কার্ড)।</li>
+                            <li>শিক্ষাগত যোগ্যতার সব মার্কশিট ও সার্টিফিকেট।</li>
+                            <li><strong>সবচেয়ে ইম্পর্ট্যান্ট:</strong> ফটো এবং সিগনেচার নির্দিষ্ট সাইজের মধ্যে ক্রপ করা (সাধারণত ২০-৫০ KB)।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>সংশ্লিষ্ট বোর্ডের ওয়েবসাইটে কাস্টমারের ওটিআর (One Time Registration) করো -> প্রোফাইল লগইন করে বর্তমান শূন্যপদের "Apply Now" লিংকে ক্লিক করো -> শিক্ষাগত যোগ্যতা ও ক্যাটাগরি পুঙ্খানুপুঙ্খভাবে ফিলাপ করো -> আগে থেকে রিসাইজ করা ফটো ও সই আপলোড করো -> সাবমিট করে অনলাইন অ্যাপ্লিকেশন ফি (যদি প্রযোজ্য হয়) কাট আও এবং ফাইনাল প্রিন্টআউট বের করে কাস্টমারকে দাও।</p>
+                        
+                        <h4>💰 খরচ:</h4>
+                        <p>পরীক্ষার ক্যাটাগরি অনুযায়ী ফর্মের দাম (₹১০০ থেকে ₹৫০০+ হতে পারে)। জেনারেলদের ফি থাকে, সংরক্ষিত শ্রেণির ক্ষেত্রে অনেক সময় ছাড় থাকে। ক্যাফে চার্জ ₹৫০ - ₹১০০ নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Travel Booking -->
+            <div class="accordion-item">
+                <div class="accordion-header">৬. ট্রেন, ফ্লাইট ও বাস টিকিট বুকিং (Travel Booking)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন/বুকিং করা হয়?</h4>
+                        <p>দূরপাল্লার ভ্রমণের সময় নিশ্চিত ও আরামদায়ক সিট (Confirm Seat) পাওয়ার জন্য এবং স্টেশনের লম্বা লাইন এড়াতে অ্যাডভান্স টিকিট বুক করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল লিংক:</h4>
+                        <a href="https://www.irctc.co.in" target="_blank" class="portal-link">IRCTC Official (Train)</a>
+                        <a href="https://www.makemytrip.com" target="_blank" class="portal-link">MakeMyTrip (Flight & Bus)</a>
+                        
+                        <h4>📁 প্রয়োজনীয় তথ্য:</h4>
+                        <p>প্যাসেঞ্জারের নাম, বয়স, জেন্ডার এবং ভ্রমণের জন্য একটি বৈধ আইডি প্রুফ ডিটেইলস (যেমন ভোটার কার্ড নম্বর)।</p>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>IRCTC বা ট্রাভেল অ্যাপে নিজের লগইন আইডি দিয়ে ঢোকো -> কোথা থেকে কোথায় যাবে (Source to Destination) এবং ডেট সিলেক্ট করো -> ট্রেনের তালিকা থেকে পছন্দের ক্লাস (SL/AC) বেছে নাও -> প্যাসেঞ্জারদের নাম ও বয়স টাইপ করো -> কাস্টমারের মোবাইল নম্বর দাও -> অনলাইন পেমেন্ট (UPI/Debit Card) করে কনফার্ম টিকিট বুক করো এবং টিকিটটি PDF আকারে ডাউনলোড করে প্রিন্ট দাও।</p>
+
+                        <h4>💡 ট্রিক ও কাস্টমার চার্জ:</h4>
+                        <p>পার্সোনাল আইডি দিয়ে টিকিট কাটলে প্রতি টিকিটে ক্যাফে মালিকরা <strong>₹৩০ - ₹৫০ (Sleeper)</strong> এবং <strong>₹১০০ (AC)</strong> এক্সট্রা সার্ভিস চার্জ নেয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Mobile & DTH Recharge -->
+            <div class="accordion-item">
+                <div class="accordion-header">৭. রিচার্জ করার সেরা মাধ্যম (Mobile & DTH Recharge)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন এই মাধ্যমগুলো ব্যবহার করা হয়?</h4>
+                        <p>সাধারণ ফোনপে বা পেটিএম অ্যাপ রিচার্জের ওপর অতিরিক্ত চার্জ কাটে, কিন্তু রিটেইলার পোর্টাল বা নির্দিষ্ট কোম্পানির অ্যাপ ব্যবহার করলে ক্যাশব্যাক ও ডাইরেক্ট কমিশন পাওয়া যায় যা সাইবার ব্যবসার লাভ বাড়ায়।</p>
+
+                        <h4>💡 রিটেইল ও লাভের মাধ্যম:</h4>
+                        <ul>
+                            <li><strong>Jio POS Plus / SmartConnect (Vi) / Mitra App (Airtel):</strong> অফিশিয়াল রিটেইলার অ্যাপ, যাতে ৩% থেকে ৪% ডাইরেক্ট কমিশন পাওয়া যায়।</li>
+                            <li><strong>PayNearby / Spice Money:</strong> মাল্টি-রিচার্জ পোর্টাল, যা থেকে প্রতি ট্রানজেকশনে ভালো ক্যাশব্যাক বা কমিশন পাওয়া যায়।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>রিটেইলার পোর্টালে লগইন করো -> মোবাইল রিচার্জ অপশন সিলেক্ট করো -> কাস্টমারের নম্বরটি টাইপ করলে অটোমেটিক অপারেটর ও সার্কেল দেখাবে -> "View Plans" এ ক্লিক করে কাস্টমারের পছন্দের প্ল্যানটি সিলেক্ট করো -> নিজের রিটেইলার পিন বা এম-পিন (mPIN) দিয়ে রিচার্জ সাকসেসফুল করো। কমিশন আপনার ওয়ালেটে সাথে সাথে ক্রেডিট হয়ে যাবে।</p>
+                        
+                        <h4>💰 খরচ:</h4>
+                        <p>রিচার্জ প্ল্যানের নির্দিষ্ট দাম। কাস্টমারদের কোনো এক্সট্রা ফি দিতে হয় না।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Gas Cylinder Booking -->
+            <div class="accordion-item">
+                <div class="accordion-header">৮. এলপিজি গ্যাস সিলিন্ডার বুকিং (Gas Cylinder Booking)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন/বুক করা হয়?</h4>
+                        <p>রান্নার এলপিজি গ্যাস ফুরিয়ে গেলে ডিস্ট্রিবিউটর অফিসের লাইনে না দাঁড়িয়ে ক্যাফে থেকে অনলাইনের মাধ্যমে হোম ডেলিভারির জন্য গ্যাস সিলিন্ডার রিফিল বুক করা যায়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল/অ্যাপ:</h4>
+                        <a href="https://my.ebharatgas.com" target="_blank" class="portal-link">Bharat Gas Portal</a>
+                        <a href="https://cx.indane.in" target="_blank" class="portal-link">Indane Gas Portal</a>
+                        
+                        <h4>📁 প্রয়োজনীয় তথ্য:</h4>
+                        <p>কাস্টমার আইডি (Consumer ID), এলপিজি আইডি (LPG ID) অথবা গ্যাস বইতে রেজিস্টার্ড মোবাইল নম্বর।</p>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>যেকোনো অনলাইন পেমেন্ট পোর্টাল বা নির্দিষ্ট কোম্পানির সাইটে যাও -> এলপিজি বুকিং সেকশনে ক্লিক করে গ্যাস এজেন্সির নাম (যেমন- Indane) সিলেক্ট করো -> রেজিস্টার্ড মোবাইল নম্বর বা কনজিউমার আইডি দাও -> কাস্টমারের নাম ও বুকিং অ্যামাউন্ট ভেরিফাই করো -> অনলাইনে পেমেন্ট সম্পূর্ণ করলে বুকিং নম্বর জেনারেট হবে। বুকিং রসিদ কাস্টমারকে প্রিন্ট করে দাও।</p>
+
+                        <h4>💰 খরচ:</h4>
+                        <p>সিলিন্ডারের বর্তমান সরকারি বাজার মূল্য। ক্যাফে সার্ভিস চার্জ ₹১০ - ₹২০।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Photoshop Photo Printing -->
+            <div class="accordion-item">
+                <div class="accordion-header">⑨. ফটোশপ দিয়ে পাসপোর্ট সাইজ ছবি তৈরি (Photoshop Photo Printing)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন তৈরি করা হয়?</h4>
+                        <p>যেকোনো সরকারি বা বেসরকারি ফর্ম ফিলাপ, স্কুল-কলেজের অ্যাডমিশন, ব্যাংকে অ্যাকাউন্ট খোলার মতো সমস্ত অফিশিয়াল ডকুমেন্টে আটকানোর জন্য ইনস্ট্যান্ট ছবির প্রয়োজন মেটাতে এটি করা হয়।</p>
+
+                        <h4>📐 সাইজ গাইডলাইন (Crop Tool):</h4>
+                        <p>Width: <strong>3.5 cm</strong> | Height: <strong>4.5 cm</strong> | Resolution: <strong>300 px/inch</strong></p>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>ফোটোশপে ছবি ওপেন করো -> ক্রপ টুল নিয়ে ওপরের সাইজ সেট করে ছবি ক্রপ করো -> `Ctrl + A` প্রেস করে সম্পূর্ণ সিলেক্ট করো -> `Edit -> Stroke` এ গিয়ে 2px বা 3px Black Border দাও -> `Ctrl + N` প্রেস করে একটি নতুন 4x6 বা A4 ফটো পেজ নাও -> মুভ টুল দিয়ে ছবিটি নতুন পেজে ড্র্যাগ করো -> `Alt` কি হোল্ড করে মাউস দিয়ে টানলে ডুপ্লিকেট ছবি তৈরি হবে। এক লাইনে ছবি সাজিয়ে প্রিন্টারে Glossy Paper সিলেক্ট করে High Quality-তে প্রিন্ট করো।</p>
+                        
+                        <h4>💰 কাস্টমার চার্জ:</h4>
+                        <p>এক কপি 4x6 শিটে ৮টি ছবি বের হয়। পুরো পেপারের ম্যাটেরিয়াল খরচ পড়ে মাত্র ₹৫, কাস্টমারের থেকে নেওয়া হয় <strong>₹৩০ - ₹৪০</strong>।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Biodata/Resume -->
+            <div class="accordion-item">
+                <div class="accordion-header">১০. বায়োডাটা বা সিভি তৈরি (Biodata/Resume Creation)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন তৈরি করা হয়?</h4>
+                        <p>যেকোনো প্রাইভেট কোম্পানি বা সংস্থায় ইন্টারভিউ দেওয়ার জন্য চাকরিপ্রার্থীর শিক্ষাগত যোগ্যতা, অভিজ্ঞতা এবং স্কিল প্রফেশনাল উপায়ে প্রেজেন্ট করতে বায়োডাটা বা রিজুমে প্রয়োজন হয়।</p>
+
+                        <h4>🛠️ ব্যবহৃত টুলস:</h4>
+                        <a href="https://www.canva.com" target="_blank" class="portal-link">Canva (Free Resume Builder)</a>
+                        
+                        <h4>📋 সঠিক ফরম্যাট ও কাজের পদ্ধতি:</h4>
+                        <p>ক্যানভা বা এমএস ওয়ার্ডে একটি ক্লিন লেআউট খোলো -> প্রথমে কাস্টমারের নাম ও কন্ট্যাক্ট ডিটেইলস দাও -> "Career Objective" লেখো -> একটি সুন্দর টেবিল বানিয়ে শিক্ষাগত যোগ্যতা (মাধ্যমিক, উচ্চমাধ্যমিক ইত্যাদি পাসের সাল ও পার্সেন্টেজ সহ) সাজাও -> টেকনিক্যাল বা পার্সোনাল স্কিল যোগ করো -> শেষে একটি সেলফ ডিক্লেয়ারেশন ও সই করার জায়গা রেখে পেজটি PDF-এ এক্সপোর্ট করে বন্ড পেপার বা ভালো পেপারে প্রিন্ট করো।</p>
+                        
+                        <h4>💰 কাস্টমার চার্জ:</h4>
+                        <p>টাইপিং ডেটা এবং ১ কপি প্রিন্ট সহ সাধারণত <strong>₹৪০ - ₹৫০</strong> চার্জ করা হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Caste Certificate -->
+            <div class="accordion-item">
+                <div class="accordion-header">১১. কাস্ট বা জাতিগত শংসাপত্র (Caste Certificate - SC/ST/OBC)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>অনগ্রসর শ্রেণীর (SC/ST/OBC) নাগরিকদের সরকারি চাকরিতে, পড়াশোনায় সিট সংরক্ষণে এবং বিভিন্ন সরকারি স্কলারশিপের আর্থিক সুবিধা পাওয়ার জন্য এই সার্টিফিকেট প্রয়োজন হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://castcertificatewb.gov.in" target="_blank" class="portal-link">Caste Certificate Portal WB</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস (আধার ছাড়া):</h4>
+                        <ul>
+                            <li>আবেদনকারীর বার্থ সার্টিফিকেট বা স্কুলের অ্যাডমিট কার্ড।</li>
+                            <li>বংশের কারো কাস্ট সার্টিফিকেট এবং সম্পর্কের প্রমাণপত্র (Blood Relation Tree)।</li>
+                            <li>ঠিকানার জন্য ভোটার কার্ড বা ল্যান্ড রেভিনিউ রসিদ (খাজনা)।</li>
+                            <li>গেজেটেড অফিসারের থেকে সত্যায়িত বংশতালিকা।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>পোর্টালে গিয়ে "Apply for SC/ST/OBC" লিংকে ক্লিক করো -> কাস্টমারের সমস্ত পার্সোনাল ডিটেইলস এবং বংশের যার সার্টিফিকেট আছে তার সার্টিফিকেট নম্বর ও সম্পর্ক এন্ট্রি করো -> দুজন লোকাল সাক্ষীর (Witness) নাম ও ঠিকানা দাও -> ফর্ম সাবমিট করার পর একনলেজমেন্ট কপি এবং অ্যাপ্লিকেশন ফর্মটি প্রিন্ট করো -> ফর্মে কাস্টমারের ছবি আটকে সমস্ত ডকুমেন্টের জেরক্স সেলফ-অ্যাটেস্টেড করে কাস্টমারকে বিডিও (BDO) বা এসডিও (SDO) অফিসে জমা দিতে বলো।</p>
+                        
+                        <h4>💰 সরকারি খরচ:</h4>
+                        <p>সরকারি আবেদন ফি একদম <strong>₹০ (বিনামূল্যে)</strong>। ক্যাফে সার্ভিস চার্জ ₹৪০ - ₹৫০ নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Birth Certificate -->
+            <div class="accordion-item">
+                <div class="accordion-header">১২. জন্ম শংসাপত্র (Birth Certificate)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>যেকোনো মানুষের জন্মের প্রথম আইনি রেকর্ড ও বয়সের সবচেয়ে অকাট্য প্রমাণ হিসেবে এটি ব্যবহৃত হয়। স্কুলে ভর্তি, পাসপোর্ট ও অন্যান্য আইডেন্টিটি প্রুফ তৈরির জন্য এটি প্রথম ডকুমেন্ট।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://janmamrityutathya.wb.gov.in" target="_blank" class="portal-link">Janma-Mrityu Tathya Portal</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস:</h4>
+                        <ul>
+                            <li>হসপিটাল বা নার্সিং হোম থেকে দেওয়া Discharge Certificate বা বার্থ স্লিপ।</li>
+                            <li>বাবা ও মায়ের আইডি প্রুফ (ভোটার কার্ড/প্যান কার্ড)।</li>
+                            <li>১ বছরের বেশি দেরি হলে magistrate কোর্টের পারমিশন/হলфনামা (Delayed Order)।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>পোর্টালে গিয়ে Citizen Services থেকে Birth -> "Apply for New Registration" এ ক্লিক করো -> হসপিটালের দেওয়া ডিসচার্জ সার্টিফিকেট দেখে শিশুর জন্ম তারিখ, সময়, লিঙ্গ এবং বাবা-মায়ের ডিটেইলস টাইপ করো -> ডিসচার্জ সার্টিফিকেটটি স্পষ্ট করে স্ক্যান করে আপলোড করো -> সাবমিট করে একনলেজমেন্ট নম্বরটি রেখে দাও। লোকাল পঞ্চায়েত বা মিউনিসিপ্যালিটি থেকে এটি অ্যাপ্রুভ হলে সাইট থেকেই ডিজিটাল সার্টিফিকেট ডাউনলোড করে প্রিন্ট দেওয়া যায়।</p>
+                        
+                        <h4>💰 সরকারি খরচ:</h4>
+                        <p>জন্মের ২১ দিনের মধ্যে আবেদন করলে <strong>বিনামূল্যে</strong>। দেরি হলে সামান্য লেট ফি (₹১০ - ₹৫০) অনলাইনে কাটতে হয়। ক্যাফে চার্জ ₹৪০ - ₹৫০।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. PAN Card -->
+            <div class="accordion-item">
+                <div class="accordion-header">১৩. প্যান কার্ড আবেদন (New PAN Card - Form 49A)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>যেকোনো ধরনের বড় আর্থিক লেনদেন করতে, ব্যাংকে অ্যাকাউন্ট খুলতে, ট্যাক্স (Income Tax) ফাইল করতে এবং একটি স্থায়ী ফটো আইডি প্রুফ হিসেবে এই কার্ড অত্যন্ত জরুরি।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://www.tin-nsdl.com" target="_blank" class="portal-link">NSDL Online PAN Application</a>
+                        
+                        <h4>📝 ফর্ম ও ডকুমেন্টস (আধার ছাড়া):</h4>
+                        <p><strong>Form 49A</strong> | আইডি প্রুফ: ভোটার কার্ড। ঠিকানার প্রমাণ: ইলেকট্রিক বিল/ব্যাংক পাসবই। জন্মতারিখ প্রমাণ: মাধ্যমিক অ্যাডমিট বা বার্থ সার্টিফিকেট।</p>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>পোর্টালে গিয়ে Form 49A সিলেক্ট করো -> কাস্টমারের নাম, বাবার নাম ও জন্মতারিখ নির্ভুল টাইপ করো -> আধার ছাড়া করতে গেলে "Physical Documentation" মোড সিলেক্ট করবে -> অনলাইনে ₹১০৭ ফি পে করো -> জেনারেট হওয়া ফর্মটি প্রিন্ট করো -> ফর্মে কাস্টমারের দুটি পাসপোর্ট সাইজ ছবি লাগিয়ে নির্দিষ্ট জায়গায় সই করাও -> ফর্মের সাথে ভোটার কার্ড ও অ্যাডমিট জেরক্স গেজেটেড অফিসারকে দিয়ে অ্যাটেস্টেড করিয়ে NSDL-এর হেড অফিসে স্পিড পোস্টের মাধ্যমে পাঠিয়ে দাও।</p>
+
+                        <h4>💰 সরকারি খরচ ও ক্যাফে চার্জ:</h4>
+                        <p>ফিজিক্যাল প্যান কার্ডের সরকারি ফি <strong>₹১০৭</strong>। কাস্টমারের থেকে সাধারণত ক্যাফে চার্জ সহ ₹১৫০ - ₹২০০ নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14. PAN-Voter Link -->
+            <div class="accordion-item">
+                <div class="accordion-header">১৪. প্যান ও ভোটার লিঙ্ক (PAN-Voter Linking / Verification)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন এই কাজ করা হয়?</h4>
+                        <p>ভোটার ডেটাবেসকে আরও সুরক্ষিত ও জেনুইন করার জন্য এবং নাগরিকের আর্থিক তথ্যের সাথে পরিচয়পত্রের সত্যতা মেলানোর জন্য সরকারের নির্দেশিকা অনুযায়ী এটি প্রোফাইলে আপডেট করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://voters.eci.gov.in" target="_blank" class="portal-link">NVSP Portal (Voter Portal)</a>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>ভোটার পোর্টালে কাস্টমারের আইডি দিয়ে লগইন করো -> প্রোফাইল বা সার্ভিস সেকশনে গিয়ে অল্টারনেティブ আইডি আপডেশন অপশন সিলেক্ট করো -> ড্রপডাউন থেকে 'PAN CARD' বেছে নাও -> প্যান কার্ডের ১০ ডিজিটের আলফানিউমেরিক নম্বরটি টাইপ করো -> সাবমিট করলে নির্বাচন কমিশনের ডেটাবেসে ভোটার ও প্যান সফলভাবে লিঙ্ক হয়ে যাবে।</p>
+                        
+                        <h4>💰 খরচ:</h4>
+                        <p>সরকারি ফি একদম <strong>₹০</strong>, ক্যাফে চার্জ হিসেবে ₹২০ - ₹৩০ নেওয়া যায়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 15. Scholarships -->
+            <div class="accordion-item">
+                <div class="accordion-header">১৫. স্কলারশিপ আবেদন (Scholarships - SVMCM & NSP)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>মেধাবী ও আর্থিকভাে অনগ্রসর ছাত্রছাত্রীদের উচ্চশিক্ষার খরচ চালানোর জন্য সরকার ও বিভিন্ন ট্রাস্টের তরফ থেকে বাৎসরিক আর্থিক অনুদান সরাসরি ব্যাংক অ্যাকাউন্টে পাওয়ার জন্য আবেদন করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল (SVMCM):</h4>
+                        <a href="https://svmcm.wbhed.gov.in" target="_blank" class="portal-link">Swami Vivekananda Scholarship Portal</a>
+                        
+                        <h4>🌐 অফিশিয়াল পোর্টাল (NSP):</h4>
+                        <a href="https://scholarships.gov.in" target="_blank" class="portal-link">National Scholarship Portal</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস:</h4>
+                        <ul>
+                            <li>শেষ পরীক্ষার মার্কশিট (যেমন মাধ্যমিক বা উচ্চমাধ্যমিক)।</li>
+                            <li>ফ্যামিলি ইনকাম সার্টিফিকেট (কাউন্সিলর বা প্রধান/BDO-র থেকে কারেন্ট ফাইন্যান্সিয়াল ইয়ারের)।</li>
+                            <li>ব্যাংক পাসবইয়ের প্রথম পাতার স্ক্যান কপি।</li>
+                            <li>স্কুল/কলেজের কারেন্ট অ্যাডমিশন রসিদ।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>পোর্টালে গিয়ে "New Registration" করো এবং প্রাপ্ত রোল নম্বর ও নম্বর ইনপুট করে ভেরিফাই করো -> কাস্টমারের বেসিক অ্যাকাউন্ট ডিটেইলস ও ইনকাম ডিটেইলস ফিলাপ করো -> মার্কশিট, অ্যাডমিশন রসিদ, ইনকাম সার্টিফিকেট ও ব্যাংকের পাসবই স্পষ্ট করে PDF স্ক্যান করে আপলোড করো -> ফর্মটি ভালো করে রিচেক করে ফাইনাল সাবমিট করো এবং অ্যাপ্লিকেশন ফর্মটি প্রিন্ট করে কাস্টমারকে তাদের স্কুল/কলেজে জমা দিতে বলো।</p>
+                        
+                        <h4>💰 ক্যাফে চার্জ:</h4>
+                        <p>আবেদন প্রক্রিয়াটি দীর্ঘ, অনেক ডকুমেন্ট আপলোড করতে হয় এবং অত্যন্ত সতর্কতার সাথে করতে হয়, তাই ক্যাফে চার্জ <strong>₹৫০ - ₹১০০</strong> নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16. Trade License -->
+            <div class="accordion-item">
+                <div class="accordion-header">১৬. ট্রেড লাইসেন্স আবেদন (Trade License)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>যেকোনো এলাকায় (পঞ্চায়েত বা মিউনিসিপ্যালিটি) আইনি উপায়ে কোনো দোকান, ব্যবসা বা কমার্শিয়াল প্রতিষ্ঠান চালানোর জন্য স্থানীয় প্রশাসনের থেকে অফিশিয়াল পারমিশন বা লাইসেন্স নিতে এটি করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://shilpasathi.wb.gov.in" target="_blank" class="portal-link">Shilpa Sathi Portal (West Bengal)</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস:</h4>
+                        <ul>
+                            <li>ব্যবসার জায়গার জমির দলিল অথবা আপ-টু-ডেট খাজনা রসিদ (Tax Receipt)।</li>
+                            <li>ভাড়া দোকান হলে Rent Agreement (চুক্তিপত্র)।</li>
+                            <li>মালিকের ভোটার কার্ড।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>শিল্পসাথী পোর্টালে একটি ইউজার আইডি তৈরি করো -> "Online Application" থেকে Trade License (GP/Municipality) সিলেক্ট করো -> দোকানের নাম, ব্যবসার ধরন (যেমন- গ্রোসারি, সাইবার ক্যাফে), মালিকের নাম ও ঠিকানা এন্ট্রি করো -> জমির ট্যাক্স রসিদ বা ভাড়া চুক্তিপত্র স্ক্যান করে আপলোড করো -> সাবমিট করলে ফিজিক্যাল বা অনলাইন ভেরিফিকেশনের পর ফি পেমেন্টের অপশন আসবে -> ফি পে করে ইনস্ট্যান্ট ডিজিটাল ট্রেড লাইসেন্স প্রিন্ট করে কাস্টমারকে দাও।</p>
+                        
+                        <h4>💰 সরকারি খরচ:</h4>
+                        <p>পঞ্চায়েত এলাকায় ৩ বছরের জন্য ব্যবসার ধরন অনুযায়ী সাধারণত <strong>₹১৫০ - ₹৫০০</strong> সরকারি ফি অনলাইন কাটে। ক্যাফে চার্জ ₹৫০ - ₹১০০।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 17. Land Records & Mutation -->
+            <div class="accordion-item">
+                <div class="accordion-header">১৭. জমির রেকর্ড ও মিউটেশন (Land Records - Banglarbhumi)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>জমির আসল মালিকানা কার নামে আছে তা সরকারি খাতায় নিশ্চিত করার জন্য (Record Check) এবং জমি কেনার পর পুরনো মালিকের নাম কেটে সরকারি রেকর্ডে নিজের নাম তোলার জন্য (Mutation) এটি করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://banglarbhumi.gov.in" target="_blank" class="portal-link">Banglarbhumi Official Portal</a>
+                        
+                        <h4>⚙️ কাজ ও প্রসেস পদ্ধতি:</h4>
+                        <p><strong>রেকর্ড চেক:</strong> সাইটে Citizen Services থেকে 'Know Your Property' তে যাও -> জেলা, ব্লক এবং মৌজা সিলেক্ট করো -> দাগ বা খতিয়ান নম্বর দিয়ে জমির লাইভ ওনারশিপ স্ক্রিনে দেখে কাস্টমারকে প্রিন্ট দাও। <br><strong>মিউটেশন প্রসেস:</strong> সাইটে সাইন-ইন করে 'Mutation Application'-এ যাও -> ক্রেতা ও বিক্রেতার ডিটেইলস দাও -> দলিলের কপি (Deed) পিডিএফ করে আপলোড করো -> সরকারি ফি অনলাইন পে করো -> জেনারেট হওয়া কেস নম্বর ও হিয়ারিং নোটিশটি প্রিন্ট করে BL&LRO অফিসের জন্য কাস্টমারকে রেডি করে দাও।</p>
+                        
+                        <h4>💰 খরচ:</h4>
+                        <p>তথ্য দেখার জন্য ফি নেই (ক্যাফে চার্জ ₹২০), মিউটেশন বা সার্টিфাইড কপির জন্য জমির সরকারি ভ্যালু ও সাইজ অনুযায়ী ফি অনলাইন দিতে হয়। ক্যাফে চার্জ ₹১০০ - ₹২০০।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18. Ration Card Services -->
+            <div class="accordion-item">
+                <div class="accordion-header">১৮. রেশনের ক্যাটাগরি বা সারেন্ডার (Ration Card Services)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>পরিবারের কোনো সদস্য মারা গেলে বা অন্য রাজ্যে স্থায়ীভাবে চলে গেলে তার রেশন কার্ড বাতিল (Surrender) করতে হয় এবং কার্ডে কোনো ভুল থাকলে বা নন-সাসিডাইজড করতে এটি করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://food.wb.gov.in" target="_blank" class="portal-link">Food & Supplies Dept Portal</a>
+                        
+                        <h4>📝 ফর্মস গাইড:</h4>
+                        <p>রেশন কার্ড সারেন্ডার বা ডিলিট: <strong>Form 7</strong> | ক্যাটাগরি সংশোধন/নন-সাসিডাইজড করা: <strong>Form 10</strong></p>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>ফুড পোর্টালে গিয়ে নির্দিষ্ট ফর্ম (যেমন- Form 7) সিলেক্ট করো -> সচল মেম্বারের রেশন কার্ড নম্বর দিয়ে ওটিপি ভেরিফাই করো -> যে মেম্বারের কার্ড ডিলিট করতে হবে তাকে সিলেক্ট করো এবং কারণ (যেমন মৃত্যুর ক্ষেত্রে ডেথ সার্টিফিকেট) স্ক্যান করে আপলোড করো -> সাবমিট করে একনলেজমেন্ট স্লিপ জেনারেট করো।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 19. EPFO Services -->
+            <div class="accordion-item">
+                <div class="accordion-header">১৯. PF বা প্রভিডেন্ট ফান্ডের কাজ (EPFO Services)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>চাকরিজীবী ব্যক্তিরা তাদের বেতনের কেটে নেওয়া জমানো পিএফ ফান্ডের মোট ব্যালেন্স দেখতে অথবা আপৎকালীন প্রয়োজনে (যেমন চিকিৎসা, বিয়ে বা ঘর বাড়ি তৈরি) জমানো পিএফ-এর টাকা তোলার জন্য আবেদন করেন।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://unifiedportal-mem.epfindia.gov.in/memberinterface/" target="_blank" class="portal-link">EPFO Member Portal</a>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>কাস্টমারের UAN নম্বর এবং পাসওয়ার্ড দিয়ে পোর্টালে লগইন করো (মোবাইলে ওটিপি যাবে) -> **View Passbook** এ ক্লিক করে ব্যালেন্স চেক করো -> টাকা তোলার জন্য **Online Services -> Claim (Form 31, 19, 10C)** এ যাও -> ব্যাংক অ্যাকাউন্ট নম্বর দিয়ে ভেরিফাই করো -> উইথড্রয়াল এর কারণ এবং টাকার পরিমাণ টাইপ করো -> ব্যাংকের ক্যানসেল চেক বা পাসবইয়ের প্রথম পাতার স্পষ্ট ছবি আপলোড করো -> আধার লিংকড ওটিপি দিয়ে সাবমিট করো। ৭-১৫ দিনের মধ্যে টাকা অ্যাকাউন্টে ঢুকে যায়।</p>
+                        
+                        <h4>💰 ক্যাফে চার্জ:</h4>
+                        <p>জটিল ও ব্যাংকিং ট্রানজেকশনের দায়িত্বপূর্ণ কাজ হওয়ায় ক্যাফে চার্জ সাধারণত <strong>₹১০০ - ₹১৫০</strong> নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 20. Jeevan Pramaan -->
+            <div class="accordion-item">
+                <div class="accordion-header">২০. ডিজিটাল লাইফ সার্টিফিকেট (Jeevan Pramaan)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>অবসরপ্রাপ্ত সরকারি পেনশনারদের প্রতি বছর নভেম্বর মাসে তারা যে জীবিত আছেন, তার ডিজিটাল প্রমাণ জমা দিতে হয়, যাতে তাদের মাসিক পেনশন স্কিমটি কোনো বাধা ছাড়া চালু থাকে।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://jeevanpramaan.gov.in" target="_blank" class="portal-link">Jeevan Pramaan Portal</a>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>ল্যাপটপে বা স্মার্টফোনে জীভন প্রমাণ অ্যাপ্লিকেশনটি ওপেন করো -> পেনশনারের PPO নম্বর, পেনশন প্রদানকারী ব্যাংকের নাম ও অ্যাকাউন্ট নম্বর এন্ট্রি করো -> আধার ছাড়া ফেস অথেন্টিকেশন করতে চাইলে মোবাইলের **AadhaarFaceRd** অফিসিয়াল অ্যাপের মাধ্যমে পেনশনারের চোখের পলক ও মুখের স্ক্যান লাইভ ক্যামেরা দিয়ে করাও -> ভেরিফিকেশন সাকসেসফুল হলে ডিজিটাল লাইফ সার্টিফিকেট জেনারেট হবে এবং প্রমাণ আইডি স্ক্রিনে আসবে যা প্রিন্ট করে কাস্টমারকে দিতে হবে।</p>
+                        
+                        <h4>💰 ক্যাফে চার্জ:</h4>
+                        <p>পেনশনারদের এই ইনস্ট্যান্ট সার্ভিসের জন্য সাধারণত <strong>₹৩০ - ₹৫০</strong> নেওয়া হয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 21. Electricity Connection -->
+            <div class="accordion-item">
+                <div class="accordion-header">২১. ইলেকট্রিসিটি নতুন কানেকশন বা নাম পরিবর্তন</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>নতুন বাড়ি বা দোকানে নতুন বৈদ্যুতিক মিটার বসানোর আইনি পারমিশন পাওয়ার জন্য অথবা পুরনো বাড়ি কেনাবেচার পর মিটারের বিলের নাম পরিবর্তন করার জন্য আবেদন করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://www.wbsedcl.in" target="_blank" class="portal-link">WBSEDCL Portal (Rural)</a>
+                        <a href="https://www.cesc.co.in" target="_blank" class="portal-link">CESC Portal (Kolkata)</a>
+                        
+                        <h4>📁 প্রয়োজনীয় ডকুমেন্টস:</h4>
+                        <ul>
+                            <li>জমির পরচা, দলিল (Deed) বা ট্যাক্স রসিদ।</li>
+                            <li>ঠিকানার ও আইডেন্টিটি প্রমাণ (আবেদনকারীর ভোটার কার্ড)।</li>
+                            <li>১ কপি পাসপোর্ট সাইজ ছবি।</li>
+                        </ul>
+
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>WBSEDCL পোর্টালে গিয়ে 'New Connection' অপশনে ক্লিক করো -> মোবাইল নম্বর দিয়ে ওটিপি রেজিস্টার করো -> কাস্টমারের নাম, ফুল অ্যাড্রেস ও কত কিলোওয়াট লোড লাগবে তা সিলেক্ট করো -> জমির দলিল ও ভোটার কার্ড স্ক্যান করে নির্দিষ্ট বক্সে আপলোড করো -> ফর্ম সাবমিট হলে একটি **Quotation Letter** জেনারেট হবে -> কোটেশন ফি অনলাইনে পে করে দিলে ডিস্ট্রিবিউশন অফিস থেকে টেকনিশিয়ান এসে মিটার ইনস্টল করে দিয়ে যাবে।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 22. Ration Transfer -->
+            <div class="accordion-item">
+                <div class="accordion-header">২২. রেশন কার্ডের নতুন ক্যাটাগরি বা সারেন্ডার (Advanced)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন আবেদন করা হয়?</h4>
+                        <p>পরিবারের কোনো সদস্যের নতুন বিয়ে হলে বা শ্বশুরবাড়িতে নাম তুলতে হলে বাবার বাড়ির রেশন ডেটাবেস থেকে নাম কেটে নতুন ফ্যামিলির রেশন কার্ডের সাথে ট্যাগ করার জন্য এটি করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://food.wb.gov.in" target="_blank" class="portal-link">Food & Supplies Web Portal</a>
+                        
+                        <h4>📝 ম্যারেজ বা ট্রান্সফার ফর্ম ও প্রসেস:</h4>
+                        <p>কারো বিয়ে হলে রেশন কার্ড স্থানান্তরের জন্য **Form 14** ফিলাপ করতে হয়। পোর্টালে মেম্বার লগইন করে Form 14 সিলেক্ট করো -> ম্যারেজ সার্টিফিকেট বা পঞ্চায়েত প্রধানের দেওয়া সার্টিফিকেট আপলোড করো এবং নতুন যে ফ্যামিলিতে রেশন কার্ড যাবে সেই ফ্যামিলির প্রধানের কার্ড নম্বর দিয়ে লিঙ্ক করে সাবমিট করো।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 23. Land Khajna -->
+            <div class="accordion-item">
+                <div class="accordion-header">২৩. জমির রেকর্ড দেখা ও মিউটেশন (Khajna Payment)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন পে করা হয়?</h4>
+                        <p>জমির মালিকানা আইনিভাবে সম্পূর্ণ নিষ্কণ্টক রাখতে এবং সরকারের খাতায় জমির কর বকেয়া না রাখতে প্রতি বছর বাধ্যতামূলকভাবে ভূমি রাজস্ব বা খাজনা দিতে হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://banglarbhumi.gov.in" target="_blank" class="portal-link">Banglarbhumi Land Systems</a>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>বাংলারভূমি পোর্টালে সিটিজেন আইডি দিয়ে লগইন করো -> 'Land Revenue Application' (খাজনা) অপশনে যাও -> খতিয়ান নম্বর ও দাগ নম্বর ইনপুট করলে জমির পরিমাণ অনুযায়ী কত টাকা ট্যাক্স বাকি আছে তা সিস্টেমে দেখাবে -> কাস্টমারের ফোন নম্বর ও লাইভ ডিটেইলস দিয়ে GRIPS পেমেন্ট গেটওয়ের মাধ্যমে নেট ব্যাংকিং/UPI দিয়ে টাকা কাট আও -> পেমেন্ট সফল হলে **Khajna Receipt** রসিদটি ডাউনলোড করে কাস্টমারকে কালার প্রিন্ট দাও।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 24. e-Courts Services -->
+            <div class="accordion-item">
+                <div class="accordion-header">২৪. ই-কোর্ট ফি ও ফাইন পেমেন্ট (e-Courts Services)</div>
+                <div class="accordion-content">
+                    <div class="inner-content">
+                        <h4>❓ কেন পেমেন্ট করা হয়?</h4>
+                        <p>আদালতের কোনো জরিমানা মেটাতে, আইনি মামলার জুডিশিয়াল বা নন-জুডিশিয়াল ই-স্ট্যাম্প পেপারের ফি দিতে সরাসরি সরকারি ট্রেজারিতে টাকা জমা করার জন্য এটি ব্যবহার করা হয়।</p>
+
+                        <h4>🌐 অফিশিয়াল পোর্টাল:</h4>
+                        <a href="https://grips.wbhed.gov.in" target="_blank" class="portal-link">GRIPS Portal West Bengal</a>
+                        
+                        <h4>⚙️ প্রপার কাজের পদ্ধতি (How to Process):</h4>
+                        <p>GRIPS পোর্টালে গিয়ে e-Challan / Court Fee অপশন সিলেক্ট করো -> নির্দিষ্ট ডিপার্টমেন্ট (যেমন- Law Dept / Judiciary) বেছে নাও -> কেস নম্বর বা চালান রেফারেন্স নম্বর ও ফাইন প্রদানকারীর নাম, ভোটার কার্ড ডিটেইলস এন্ট্রি করো -> নেট ব্যাংকিং বা ডেবিট কার্ডের মাধ্যমে নির্দিষ্ট ফাইন বা ফি-র টাকা পে করো -> জেনারেট হওয়া **GRN (Government Reference Number)** যুক্ত অফিসিয়াল চালানটি ডাউনলোড করে কাস্টমারকে প্রিন্ট করে দাও, যা তারা কোর্টে জমা দিতে পারবে।</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p> All Right Reserved &copy; Smart Subha | Galaxy Book 4</p>
+    </footer>
+
+    <script>
+        // Professional Smooth Accordion Functionality
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionItem = button.parentElement;
+                const content = accordionItem.querySelector('.accordion-content');
+                
+                // Toggle active class on current item
+                accordionItem.classList.toggle('active');
+                
+                if (accordionItem.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = "0px";
+                }
+                
+                // Auto-Close other open items for cleaner UX
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    if (item !== accordionItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.accordion-content').style.maxHeight = "0px";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

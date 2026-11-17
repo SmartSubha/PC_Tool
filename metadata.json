@@ -1,0 +1,6 @@
+{
+  "name": "PC Tool — Free Online Image, PDF & CSC Document Tools",
+  "description": "40+ free online tools for images, PDFs, ID card cropping, government declaration forms, event cards, and CSC utilities running directly in your browser.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
