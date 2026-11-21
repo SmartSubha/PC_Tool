@@ -14,11 +14,15 @@ import { PDFDocument, StandardFonts, rgb, degrees } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { MultiSlipXeroxSaver } from './MultiSlipXeroxSaver';
+import { AutoPdfUnlockerPro } from './AutoPdfUnlockerPro';
+import { PdfBookletImposition } from './PdfBookletImposition';
+import type { AppLang } from '../../data/i18n';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 interface PdfToolsWorkspaceProps {
   toolId: string;
+  appLang?: AppLang;
 }
 
 function formatBytes(bytes: number): string {
@@ -27,9 +31,15 @@ function formatBytes(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 }
 
-export const PdfToolsWorkspace: React.FC<PdfToolsWorkspaceProps> = ({ toolId }) => {
+export const PdfToolsWorkspace: React.FC<PdfToolsWorkspaceProps> = ({ toolId, appLang = 'en' }) => {
   if (toolId === 'multi-slip-xerox-saver') {
     return <MultiSlipXeroxSaver />;
+  }
+  if (toolId === 'auto-pdf-unlocker-pro') {
+    return <AutoPdfUnlockerPro appLang={appLang} />;
+  }
+  if (toolId === 'pdf-booklet-imposition') {
+    return <PdfBookletImposition appLang={appLang} />;
   }
   return <StandardPdfToolsWorkspace toolId={toolId} />;
 };

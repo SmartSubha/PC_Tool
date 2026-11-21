@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Printer, Upload, RotateCcw } from 'lucide-react';
 import type { AppLang } from '../../data/i18n';
 import { printElementHtml } from '../../utils/printHelper';
+import { VisitingCardMaker } from './VisitingCardMaker';
+import { QrCertificateMaker } from './QrCertificateMaker';
+import { BengaliBannerThumbnailMaker } from './BengaliBannerThumbnailMaker';
+import { ShopVideoStatusMaker } from './ShopVideoStatusMaker';
+import { BengaliCeremonyCardMaker } from './BengaliCeremonyCardMaker';
 
 interface EventCardsWorkspaceProps {
   toolId: string;
@@ -9,6 +14,25 @@ interface EventCardsWorkspaceProps {
 }
 
 export const EventCardsWorkspace: React.FC<EventCardsWorkspaceProps> = ({ toolId, appLang }) => {
+  if (toolId === 'visiting-card-maker') {
+    return <VisitingCardMaker appLang={appLang} />;
+  }
+  if (toolId === 'qr-certificate-maker') {
+    return <QrCertificateMaker appLang={appLang} />;
+  }
+  if (toolId === 'bengali-banner-thumbnail-maker') {
+    return <BengaliBannerThumbnailMaker appLang={appLang} />;
+  }
+  if (toolId === 'shop-video-status-maker') {
+    return <ShopVideoStatusMaker appLang={appLang} />;
+  }
+  if (toolId === 'bengali-ceremony-card-maker') {
+    return <BengaliCeremonyCardMaker appLang={appLang} />;
+  }
+  return <StandardEventCardsWorkspace toolId={toolId} appLang={appLang} />;
+};
+
+const StandardEventCardsWorkspace: React.FC<EventCardsWorkspaceProps> = ({ toolId, appLang }) => {
   const [theme, setTheme] = useState<'royal' | 'gold' | 'violet'>('royal');
   const [cardLang, setCardLang] = useState<AppLang>(appLang);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);

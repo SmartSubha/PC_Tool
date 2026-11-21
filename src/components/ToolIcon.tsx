@@ -46,6 +46,32 @@ import {
   Globe2,
   Highlighter,
   ClipboardCheck,
+  Camera,
+  FileSearch,
+  Building2,
+  ContactRound,
+  ReceiptIndianRupee,
+  Keyboard,
+  Volume2,
+  Ticket,
+  Megaphone,
+  Shirt,
+  PackageCheck,
+  Unlock,
+  Award,
+  FilePenLine,
+  FileUser,
+  Compass,
+  BookOpen,
+  BookText,
+  Barcode,
+  Smartphone,
+  ClipboardList,
+  ImagePlus,
+  Wand2,
+  PiggyBank,
+  Film,
+  Flame,
 } from 'lucide-react';
 import type { ToolCategoryId } from '../data/toolsCatalog';
 
@@ -90,6 +116,12 @@ const TOOL_THEME: Record<string, { bg: string; fg: string; badge?: string }> = {
   'doc-watermark-protector': { bg: 'from-rose-600 to-red-700 border-red-800 shadow-rose-500/30', fg: 'text-white', badge: 'SAFE' },
   'batch-image-fixer': { bg: 'from-blue-600 to-indigo-700 border-indigo-800 shadow-blue-500/30', fg: 'text-white', badge: 'BATCH' },
   'doc-stamp-sign-placer': { bg: 'from-amber-500 to-rose-600 border-rose-700 shadow-amber-500/30', fg: 'text-white', badge: 'SIGN' },
+  'camera-shutter-count': { bg: 'from-slate-800 to-slate-950 border-amber-500 shadow-amber-500/30', fg: 'text-amber-300', badge: 'DSLR' },
+  'image-metadata-extractor': { bg: 'from-emerald-600 to-cyan-700 border-cyan-900 shadow-emerald-500/30', fg: 'text-white', badge: 'EXIF' },
+  'webcam-passport-blazer': { bg: 'from-sky-600 to-slate-900 border-sky-400 shadow-sky-500/30', fg: 'text-sky-200', badge: 'SUIT' },
+  'smart-cam-deskew-scanner': { bg: 'from-indigo-700 to-slate-950 border-amber-400 shadow-indigo-500/30', fg: 'text-amber-300', badge: 'DESKEW' },
+  'exam-form-zip-packer': { bg: 'from-emerald-600 to-teal-800 border-emerald-400 shadow-emerald-500/30', fg: 'text-white', badge: 'ZIP KB' },
+  'old-photo-restorer-studio': { bg: 'from-amber-600 to-slate-950 border-amber-400 shadow-amber-500/30', fg: 'text-amber-300', badge: '2× HD' },
 
   'multi-slip-xerox-saver': { bg: 'from-teal-600 to-emerald-700 border-emerald-800 shadow-teal-500/30', fg: 'text-white', badge: '2/4-IN-1' },
   'pdf-signature-verify': { bg: 'from-emerald-600 to-green-700 border-emerald-800 shadow-emerald-500/25', fg: 'text-white' },
@@ -103,6 +135,8 @@ const TOOL_THEME: Record<string, { bg: string; fg: string; badge?: string }> = {
   'pdf-watermark': { bg: 'from-pink-500 to-rose-600 border-pink-700 shadow-pink-500/25', fg: 'text-white' },
   'pdf-rearrange': { bg: 'from-violet-500 to-indigo-700 border-violet-800 shadow-violet-500/25', fg: 'text-white' },
   'pdf-remove-pages': { bg: 'from-red-500 to-orange-600 border-red-700 shadow-red-500/25', fg: 'text-white' },
+  'auto-pdf-unlocker-pro': { bg: 'from-amber-600 to-slate-950 border-amber-400 shadow-amber-500/30', fg: 'text-amber-300', badge: 'UNLOCK' },
+  'pdf-booklet-imposition': { bg: 'from-violet-700 to-slate-950 border-violet-400 shadow-violet-500/30', fg: 'text-violet-200', badge: 'BOOKLET' },
 
   'aadhar-cropper': { bg: 'from-orange-500 to-amber-600 border-orange-700 shadow-orange-500/30', fg: 'text-white', badge: 'UIDAI' },
   'pan-cropper': { bg: 'from-sky-600 to-blue-700 border-blue-800 shadow-sky-500/30', fg: 'text-white', badge: 'PAN' },
@@ -110,9 +144,18 @@ const TOOL_THEME: Record<string, { bg: string; fg: string; badge?: string }> = {
   'abha-cropper': { bg: 'from-cyan-500 to-teal-700 border-cyan-800 shadow-cyan-500/30', fg: 'text-white', badge: 'ABHA' },
   'ration-cropper': { bg: 'from-lime-600 to-green-700 border-green-800 shadow-lime-500/30', fg: 'text-white', badge: 'RC' },
   'multi-id-a4-grid': { bg: 'from-violet-600 to-fuchsia-700 border-fuchsia-800 shadow-violet-500/30', fg: 'text-white', badge: 'A4 GRID' },
+  'bulk-pvc-id-maker': { bg: 'from-blue-700 to-slate-950 border-amber-400 shadow-blue-500/30', fg: 'text-amber-300', badge: 'BULK ID' },
 
   'wb-status-hub': { bg: 'from-sky-600 to-indigo-700 border-indigo-900 shadow-sky-500/30', fg: 'text-white', badge: 'WB HUB' },
   'wb-job-scheme-checklist': { bg: 'from-emerald-600 to-cyan-700 border-cyan-900 shadow-emerald-500/30', fg: 'text-white', badge: 'LIST' },
+  'organization-form-maker': { bg: 'from-slate-800 to-indigo-950 border-amber-500 shadow-indigo-500/30', fg: 'text-amber-300', badge: 'FORM' },
+  'ai-doc-mismatch-checker': { bg: 'from-emerald-700 to-slate-950 border-emerald-400 shadow-emerald-500/30', fg: 'text-emerald-300', badge: 'AI CHK' },
+  'ai-handwritten-ocr-translator': { bg: 'from-amber-600 to-indigo-950 border-amber-400 shadow-amber-500/30', fg: 'text-amber-200', badge: 'AI OCR' },
+  'ai-official-application-drafter': { bg: 'from-indigo-700 to-slate-950 border-indigo-400 shadow-indigo-500/30', fg: 'text-indigo-200', badge: 'AI DOC' },
+  'bank-cheque-challan-printer': { bg: 'from-teal-700 to-slate-950 border-emerald-400 shadow-teal-500/30', fg: 'text-emerald-300', badge: 'CHEQUE' },
+  'ai-resume-cv-builder': { bg: 'from-sky-700 to-slate-950 border-sky-400 shadow-sky-500/30', fg: 'text-sky-200', badge: 'AI CV' },
+  'school-omr-question-maker': { bg: 'from-rose-700 to-slate-950 border-rose-400 shadow-rose-500/30', fg: 'text-rose-200', badge: 'OMR Q' },
+  'school-project-cover-maker': { bg: 'from-blue-800 to-amber-700 border-amber-400 shadow-blue-500/30', fg: 'text-amber-200', badge: 'COVER' },
   'wb-lakshmir-bhandar': { bg: 'from-pink-600 to-rose-700 border-rose-800 shadow-rose-500/30', fg: 'text-white', badge: 'WB' },
   'wb-kanyashree-rupashree': { bg: 'from-fuchsia-600 to-purple-700 border-purple-800 shadow-fuchsia-500/30', fg: 'text-white', badge: 'WB' },
   'wb-caste-genealogy': { bg: 'from-amber-600 to-orange-700 border-orange-800 shadow-amber-500/30', fg: 'text-white', badge: 'WB' },
@@ -128,9 +171,24 @@ const TOOL_THEME: Record<string, { bg: string; fg: string; badge?: string }> = {
   'caste-affidavit-form17': { bg: 'from-amber-600 to-red-700 border-red-800 shadow-amber-500/25', fg: 'text-white' },
   'caste-affidavit-form3': { bg: 'from-indigo-600 to-purple-800 border-indigo-900 shadow-indigo-500/25', fg: 'text-white' },
 
+  'visiting-card-maker': { bg: 'from-slate-900 to-amber-900 border-amber-400 shadow-amber-500/30', fg: 'text-amber-300', badge: 'CARD AI' },
+  'qr-certificate-maker': { bg: 'from-amber-600 to-slate-950 border-amber-400 shadow-amber-500/30', fg: 'text-amber-200', badge: 'CERT QR' },
   'marriage-biodata': { bg: 'from-rose-500 to-pink-600 border-rose-700 shadow-rose-500/30', fg: 'text-white' },
   'marriage-invitation': { bg: 'from-amber-500 to-rose-600 border-amber-700 shadow-amber-500/30', fg: 'text-white' },
+  'bengali-banner-thumbnail-maker': { bg: 'from-fuchsia-700 to-slate-950 border-amber-400 shadow-fuchsia-500/30', fg: 'text-amber-300', badge: 'BANNER' },
+  'shop-video-status-maker': { bg: 'from-rose-600 to-slate-950 border-amber-400 shadow-rose-500/30', fg: 'text-amber-300', badge: 'VIDEO' },
+  'bengali-ceremony-card-maker': { bg: 'from-red-900 to-amber-800 border-amber-400 shadow-red-500/30', fg: 'text-amber-200', badge: 'নিমন্ত্রণ' },
 
+  'bengali-typing-converter': { bg: 'from-indigo-700 to-slate-950 border-amber-400 shadow-indigo-500/30', fg: 'text-amber-300', badge: 'অ↔EN' },
+  'cyber-cafe-calculator': { bg: 'from-emerald-700 to-slate-950 border-emerald-400 shadow-emerald-500/30', fg: 'text-emerald-300', badge: 'POS GST' },
+  'upi-voice-counter': { bg: 'from-emerald-600 to-slate-950 border-emerald-400 shadow-emerald-500/30', fg: 'text-emerald-300', badge: 'UPI 🔊' },
+  'queue-token-whatsapp': { bg: 'from-green-600 to-slate-950 border-green-400 shadow-green-500/30', fg: 'text-green-300', badge: 'TOKEN' },
+  'shop-rate-notice-poster': { bg: 'from-rose-700 to-slate-950 border-amber-400 shadow-rose-500/30', fg: 'text-amber-300', badge: 'POSTER' },
+  'mobile-pc-qr-transfer': { bg: 'from-cyan-600 to-slate-950 border-cyan-400 shadow-cyan-500/30', fg: 'text-cyan-200', badge: 'QR DROP' },
+  'cyber-cafe-khata-ledger': { bg: 'from-emerald-700 to-indigo-950 border-amber-400 shadow-emerald-500/30', fg: 'text-amber-300', badge: 'KHATA' },
+  'wb-land-stamp-duty-calc': { bg: 'from-lime-700 to-slate-950 border-lime-400 shadow-lime-500/30', fg: 'text-lime-200', badge: 'LAND WB' },
+  'wb-finance-utility-calc': { bg: 'from-amber-600 to-indigo-950 border-amber-400 shadow-amber-500/30', fg: 'text-amber-200', badge: 'EMI+PO' },
+  'barcode-label-sheet-maker': { bg: 'from-slate-800 to-slate-950 border-sky-400 shadow-sky-500/30', fg: 'text-sky-300', badge: 'BARCODE' },
   'invoice-maker': { bg: 'from-emerald-600 to-teal-700 border-emerald-800 shadow-emerald-500/30', fg: 'text-white', badge: 'BILL' },
   'qr-code-generator': { bg: 'from-slate-800 to-indigo-900 border-indigo-950 shadow-indigo-500/30', fg: 'text-white', badge: 'QR' },
   'age-land-calculator': { bg: 'from-amber-600 to-orange-700 border-orange-800 shadow-amber-500/30', fg: 'text-white', badge: 'CALC' },
@@ -172,6 +230,10 @@ export const ToolVisualIcon: React.FC<ToolVisualIconProps> = ({ toolId, category
         return <RefreshCw className={iconClass} />;
       case 'doc-stamp-sign-placer':
         return <Highlighter className={iconClass} />;
+      case 'camera-shutter-count':
+        return <Camera className={iconClass} />;
+      case 'image-metadata-extractor':
+        return <FileSearch className={iconClass} />;
       case 'multi-slip-xerox-saver':
         return <Grid2x2 className={iconClass} />;
       case 'multi-id-a4-grid':
@@ -227,6 +289,66 @@ export const ToolVisualIcon: React.FC<ToolVisualIconProps> = ({ toolId, category
       case 'caste-affidavit-form17':
       case 'caste-affidavit-form3':
         return <Scale className={iconClass} />;
+      case 'organization-form-maker':
+        return <Building2 className={iconClass} />;
+      case 'visiting-card-maker':
+        return <ContactRound className={iconClass} />;
+      case 'qr-certificate-maker':
+        return <Award className={iconClass} />;
+      case 'bengali-typing-converter':
+        return <Keyboard className={iconClass} />;
+      case 'cyber-cafe-calculator':
+        return <ReceiptIndianRupee className={iconClass} />;
+      case 'upi-voice-counter':
+        return <Volume2 className={iconClass} />;
+      case 'queue-token-whatsapp':
+        return <Ticket className={iconClass} />;
+      case 'shop-rate-notice-poster':
+        return <Megaphone className={iconClass} />;
+      case 'webcam-passport-blazer':
+        return <Shirt className={iconClass} />;
+      case 'smart-cam-deskew-scanner':
+        return <ScanLine className={iconClass} />;
+      case 'exam-form-zip-packer':
+        return <PackageCheck className={iconClass} />;
+      case 'auto-pdf-unlocker-pro':
+        return <Unlock className={iconClass} />;
+      case 'bulk-pvc-id-maker':
+        return <IdCard className={iconClass} />;
+      case 'ai-doc-mismatch-checker':
+        return <ShieldCheck className={iconClass} />;
+      case 'ai-handwritten-ocr-translator':
+        return <ScanText className={iconClass} />;
+      case 'ai-official-application-drafter':
+        return <FilePenLine className={iconClass} />;
+      case 'bank-cheque-challan-printer':
+        return <Landmark className={iconClass} />;
+      case 'ai-resume-cv-builder':
+        return <FileUser className={iconClass} />;
+      case 'school-omr-question-maker':
+        return <ClipboardList className={iconClass} />;
+      case 'school-project-cover-maker':
+        return <GraduationCap className={iconClass} />;
+      case 'old-photo-restorer-studio':
+        return <Wand2 className={iconClass} />;
+      case 'pdf-booklet-imposition':
+        return <BookOpen className={iconClass} />;
+      case 'bengali-banner-thumbnail-maker':
+        return <ImagePlus className={iconClass} />;
+      case 'shop-video-status-maker':
+        return <Film className={iconClass} />;
+      case 'bengali-ceremony-card-maker':
+        return <Flame className={iconClass} />;
+      case 'mobile-pc-qr-transfer':
+        return <Smartphone className={iconClass} />;
+      case 'cyber-cafe-khata-ledger':
+        return <BookText className={iconClass} />;
+      case 'wb-land-stamp-duty-calc':
+        return <Compass className={iconClass} />;
+      case 'wb-finance-utility-calc':
+        return <PiggyBank className={iconClass} />;
+      case 'barcode-label-sheet-maker':
+        return <Barcode className={iconClass} />;
       case 'marriage-biodata':
         return <HeartHandshake className={iconClass} />;
       case 'marriage-invitation':

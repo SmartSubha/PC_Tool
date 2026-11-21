@@ -41,6 +41,7 @@ import { StatusHubPage } from './components/pages/StatusHubPage';
 import { AdminInboxModal, type SiteAdminSettings } from './components/AdminInboxModal';
 import { OfflineIndicator } from './components/PWAInstallBanner';
 import { PrintPreviewModal } from './components/PrintPreviewModal';
+import { MobileCustomerDropClient } from './components/tools/MobilePcQrTransfer';
 
 const VALID_TOOL_IDS = new Set(TOOLS_CATALOG.map((item) => item.id));
 const RECENT_STORAGE_KEY = 'pctool_recent_tools';
@@ -48,6 +49,17 @@ const FAVORITES_STORAGE_KEY = 'pctool_favorite_tools';
 const THEME_STORAGE_KEY = 'pctool_theme';
 
 export default function App() {
+  const [dropCode, setDropCode] = useState<string>(() => {
+    try {
+      const fromSearch = new URLSearchParams(window.location.search).get('drop')?.trim().toUpperCase();
+      if (fromSearch) return fromSearch;
+      const hashMatch = window.location.hash.match(/drop=([A-Za-z0-9]+)/i);
+      return hashMatch ? hashMatch[1].toUpperCase() : '';
+    } catch {
+      return '';
+    }
+  });
+
   const [lang, setLang] = useState<AppLang>(() => {
     try {
       const saved = localStorage.getItem('pctool_app_lang');
@@ -272,11 +284,11 @@ export default function App() {
   const renderToolWorkspace = (tool: ToolItem) => {
     switch (tool.category) {
       case 'image':
-        return <ImageToolsWorkspace toolId={tool.id} />;
+        return <ImageToolsWorkspace toolId={tool.id} lang={lang} />;
       case 'pdf':
-        return <PdfToolsWorkspace toolId={tool.id} />;
+        return <PdfToolsWorkspace toolId={tool.id} appLang={lang} />;
       case 'id-card':
-        return <IdCardCropperWorkspace toolId={tool.id} toolName={tool.name} />;
+        return <IdCardCropperWorkspace toolId={tool.id} toolName={tool.name} appLang={lang} />;
       case 'documents':
         return (
           <DocumentToolsWorkspace
@@ -339,6 +351,24 @@ export default function App() {
             a: `Click the "Admin" button in the top bar, mobile menu, or footer to unlock SMART SUBHA's protected Admin Console (Inbox + Suggestions + CSV export, Live Homepage Notice Banner, and Tool Visibility Controls). You can also reach out at ${ownerConfig.supportEmail} or ${ownerConfig.phone}.`,
           },
         ];
+
+  if (dropCode) {
+    return (
+      <MobileCustomerDropClient
+        sessionCode={dropCode}
+        onExit={() => {
+          setDropCode('');
+          try {
+            const url = new URL(window.location.href);
+            url.searchParams.delete('drop');
+            window.history.replaceState({}, '', url.pathname + url.search);
+          } catch {
+            // ignore
+          }
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f4f6fb] dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">

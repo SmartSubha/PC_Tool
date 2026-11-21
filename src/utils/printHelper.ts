@@ -10,11 +10,14 @@ const PRINT_STYLE_ID = '__direct_print_style';
 
 export type MarginPreset = 'none' | 'narrow' | 'standard' | 'wide';
 export type WatermarkPosition = 'bottom-right' | 'bottom-center' | 'diagonal';
+export type CustomWatermarkStyle = 'diagonal' | 'header' | 'footer';
 
 export interface PrintOptions {
   marginPreset: MarginPreset;
   showPageWatermark: boolean;
   watermarkPosition: WatermarkPosition;
+  customWatermarkText: string;
+  customWatermarkStyle: CustomWatermarkStyle;
 }
 
 export interface PrintJobPayload {
@@ -52,6 +55,8 @@ function dispatchPrintPreview(job: PrintJobPayload): void {
       marginPreset: job.defaultMargin,
       showPageWatermark: false,
       watermarkPosition: 'bottom-right',
+      customWatermarkText: '',
+      customWatermarkStyle: 'diagonal',
     });
     return;
   }
@@ -177,15 +182,26 @@ function buildWatermarkNode(pageNum: number, totalPages: number, position: Water
   return badge;
 }
 
+function buildCustomTextWatermarkNode(text: string, style: CustomWatermarkStyle): HTMLElement {
+  const el = document.createElement('div');
+  el.className = `pc-custom-watermark pc-custom-watermark--${style}`;
+  el.textContent = text;
+  return el;
+}
+
 export function executePrintJob(job: PrintJobPayload, options: PrintOptions): void {
   const marginMm = MARGIN_PRESET_MM[options.marginPreset];
-  const { showPageWatermark, watermarkPosition } = options;
+  const { showPageWatermark, watermarkPosition, customWatermarkText, customWatermarkStyle } = options;
+  const trimmedCustomWatermark = customWatermarkText.trim();
+  const hasCustomWatermark = trimmedCustomWatermark.length > 0;
 
-  const watermarkCss = showPageWatermark
-    ? `
+  const watermarkCss =
+    showPageWatermark || hasCustomWatermark
+      ? `
       #${PRINT_SHEET_ID} .print-page-sheet,
       #${PRINT_SHEET_ID} .print-doc-wrapper { position: relative; }
-      #${PRINT_SHEET_ID} .pc-print-watermark {
+      #${PRINT_SHEET_ID} .pc-print-watermark,
+      #${PRINT_SHEET_ID} .pc-custom-watermark {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-weight: 800;
         letter-spacing: 0.06em;
@@ -224,13 +240,51 @@ export function executePrintJob(job: PrintJobPayload, options: PrintOptions): vo
         color: rgba(15, 23, 42, 0.09);
         white-space: nowrap;
       }
+      #${PRINT_SHEET_ID} .pc-custom-watermark--diagonal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-34deg);
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 28pt;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(15, 23, 42, 0.11);
+        white-space: nowrap;
+      }
+      #${PRINT_SHEET_ID} .pc-custom-watermark--header {
+        position: fixed;
+        top: ${Math.max(2, marginMm > 0 ? 2 : 3)}mm;
+        right: ${Math.max(3, marginMm > 0 ? 2 : 4)}mm;
+        font-size: 8.5pt;
+        color: #475569;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #cbd5e1;
+        padding: 1mm 2.5mm;
+        border-radius: 1.5mm;
+      }
+      #${PRINT_SHEET_ID} .pc-custom-watermark--footer {
+        position: fixed;
+        bottom: ${Math.max(2, marginMm > 0 ? 2 : 3)}mm;
+        left: ${Math.max(3, marginMm > 0 ? 2 : 4)}mm;
+        font-size: 8.5pt;
+        color: #475569;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #cbd5e1;
+        padding: 1mm 2.5mm;
+        border-radius: 1.5mm;
+      }
       #${PRINT_SHEET_ID} .print-page-sheet .pc-print-watermark--bottom-right,
       #${PRINT_SHEET_ID} .print-page-sheet .pc-print-watermark--bottom-center,
-      #${PRINT_SHEET_ID} .print-page-sheet .pc-print-watermark--diagonal {
+      #${PRINT_SHEET_ID} .print-page-sheet .pc-print-watermark--diagonal,
+      #${PRINT_SHEET_ID} .print-page-sheet .pc-custom-watermark--diagonal,
+      #${PRINT_SHEET_ID} .print-page-sheet .pc-custom-watermark--header,
+      #${PRINT_SHEET_ID} .print-page-sheet .pc-custom-watermark--footer {
         position: absolute;
       }
     `
-    : '';
+      : '';
 
   if (job.kind === 'image' && job.imageDataUrl) {
     const is4x6 = job.paperSize === '4x6';
@@ -254,6 +308,9 @@ export function executePrintJob(job: PrintJobPayload, options: PrintOptions): vo
         img.src = job.imageDataUrl!;
         img.alt = job.title;
         sheet.appendChild(img);
+        if (hasCustomWatermark) {
+          sheet.appendChild(buildCustomTextWatermarkNode(trimmedCustomWatermark, customWatermarkStyle));
+        }
         if (showPageWatermark) {
           sheet.appendChild(buildWatermarkNode(1, 1, watermarkPosition));
         }
@@ -288,6 +345,9 @@ export function executePrintJob(job: PrintJobPayload, options: PrintOptions): vo
           img.src = url;
           img.alt = `${job.title} - Page ${idx + 1}`;
           pageDiv.appendChild(img);
+          if (hasCustomWatermark) {
+            pageDiv.appendChild(buildCustomTextWatermarkNode(trimmedCustomWatermark, customWatermarkStyle));
+          }
           if (showPageWatermark) {
             pageDiv.appendChild(buildWatermarkNode(idx + 1, urls.length, watermarkPosition));
           }
@@ -318,7 +378,7 @@ export function executePrintJob(job: PrintJobPayload, options: PrintOptions): vo
       }
       html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; }
       #${PRINT_SHEET_ID} { padding: 0 !important; }
-      ${useFixedDocWatermark ? watermarkCss : ''}
+      ${useFixedDocWatermark || hasCustomWatermark ? watermarkCss : ''}
     }`;
 
     triggerDirectPrint(
@@ -326,6 +386,9 @@ export function executePrintJob(job: PrintJobPayload, options: PrintOptions): vo
         const wrapper = document.createElement('div');
         wrapper.className = 'print-doc-wrapper';
         wrapper.innerHTML = job.htmlContent!;
+        if (hasCustomWatermark) {
+          wrapper.appendChild(buildCustomTextWatermarkNode(trimmedCustomWatermark, customWatermarkStyle));
+        }
         if (useFixedDocWatermark) {
           wrapper.appendChild(buildWatermarkNode(1, 1, watermarkPosition));
         }

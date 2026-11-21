@@ -5,6 +5,16 @@ import type { OwnerContactConfig } from '../../data/ownerConfig';
 import type { AppLang } from '../../data/i18n';
 import { printElementHtml } from '../../utils/printHelper';
 import { AgeLandCalculator } from './AgeLandCalculator';
+import { CyberCafeCalculator } from './CyberCafeCalculator';
+import { BengaliTypingConverter } from './BengaliTypingConverter';
+import { UpiVoiceCounter } from './UpiVoiceCounter';
+import { QueueTokenWhatsapp } from './QueueTokenWhatsapp';
+import { ShopRateNoticePoster } from './ShopRateNoticePoster';
+import { MobilePcQrTransfer } from './MobilePcQrTransfer';
+import { CyberCafeKhataLedger } from './CyberCafeKhataLedger';
+import { WbLandStampDutyCalc } from './WbLandStampDutyCalc';
+import { WbFinanceUtilityCalc } from './WbFinanceUtilityCalc';
+import { BarcodeLabelSheetMaker } from './BarcodeLabelSheetMaker';
 
 interface UtilityToolsWorkspaceProps {
   toolId: string;
@@ -75,6 +85,36 @@ const INVOICE_THEMES: Record<
 export const UtilityToolsWorkspace: React.FC<UtilityToolsWorkspaceProps> = (props) => {
   if (props.toolId === 'age-land-calculator') {
     return <AgeLandCalculator appLang={props.appLang} />;
+  }
+  if (props.toolId === 'cyber-cafe-calculator') {
+    return <CyberCafeCalculator appLang={props.appLang} />;
+  }
+  if (props.toolId === 'bengali-typing-converter') {
+    return <BengaliTypingConverter appLang={props.appLang} />;
+  }
+  if (props.toolId === 'upi-voice-counter') {
+    return <UpiVoiceCounter appLang={props.appLang} />;
+  }
+  if (props.toolId === 'queue-token-whatsapp') {
+    return <QueueTokenWhatsapp appLang={props.appLang} />;
+  }
+  if (props.toolId === 'shop-rate-notice-poster') {
+    return <ShopRateNoticePoster appLang={props.appLang} />;
+  }
+  if (props.toolId === 'mobile-pc-qr-transfer') {
+    return <MobilePcQrTransfer appLang={props.appLang} />;
+  }
+  if (props.toolId === 'cyber-cafe-khata-ledger') {
+    return <CyberCafeKhataLedger appLang={props.appLang} />;
+  }
+  if (props.toolId === 'wb-land-stamp-duty-calc') {
+    return <WbLandStampDutyCalc appLang={props.appLang} />;
+  }
+  if (props.toolId === 'wb-finance-utility-calc') {
+    return <WbFinanceUtilityCalc appLang={props.appLang} />;
+  }
+  if (props.toolId === 'barcode-label-sheet-maker') {
+    return <BarcodeLabelSheetMaker appLang={props.appLang} />;
   }
   return <StandardUtilityWorkspace {...props} />;
 };

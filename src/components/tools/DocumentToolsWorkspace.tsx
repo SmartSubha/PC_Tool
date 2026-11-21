@@ -3,6 +3,14 @@ import { Printer, Plus, Trash2, Upload, RotateCcw } from 'lucide-react';
 import type { AppLang } from '../../data/i18n';
 import { printElementHtml } from '../../utils/printHelper';
 import { ChecklistGeneratorWorkspace } from './ChecklistGeneratorWorkspace';
+import { OrganizationFormMaker } from './OrganizationFormMaker';
+import { AiDocMismatchChecker } from './AiDocMismatchChecker';
+import { AiHandwrittenOcrTranslator } from './AiHandwrittenOcrTranslator';
+import { AiOfficialApplicationDrafter } from './AiOfficialApplicationDrafter';
+import { BankChequeChallanPrinter } from './BankChequeChallanPrinter';
+import { AiResumeCvBuilder } from './AiResumeCvBuilder';
+import { SchoolOmrQuestionMaker } from './SchoolOmrQuestionMaker';
+import { SchoolProjectCoverMaker } from './SchoolProjectCoverMaker';
 
 interface DocumentToolsWorkspaceProps {
   toolId: string;
@@ -26,6 +34,30 @@ export const DocumentToolsWorkspace: React.FC<DocumentToolsWorkspaceProps> = ({
 }) => {
   if (toolId === 'wb-job-scheme-checklist') {
     return <ChecklistGeneratorWorkspace appLang={appLang} onOpenToolById={onOpenToolById} />;
+  }
+  if (toolId === 'organization-form-maker') {
+    return <OrganizationFormMaker appLang={appLang} />;
+  }
+  if (toolId === 'ai-doc-mismatch-checker') {
+    return <AiDocMismatchChecker appLang={appLang} />;
+  }
+  if (toolId === 'ai-handwritten-ocr-translator') {
+    return <AiHandwrittenOcrTranslator appLang={appLang} />;
+  }
+  if (toolId === 'ai-official-application-drafter') {
+    return <AiOfficialApplicationDrafter appLang={appLang} />;
+  }
+  if (toolId === 'bank-cheque-challan-printer') {
+    return <BankChequeChallanPrinter appLang={appLang} />;
+  }
+  if (toolId === 'ai-resume-cv-builder') {
+    return <AiResumeCvBuilder appLang={appLang} />;
+  }
+  if (toolId === 'school-omr-question-maker') {
+    return <SchoolOmrQuestionMaker appLang={appLang} />;
+  }
+  if (toolId === 'school-project-cover-maker') {
+    return <SchoolProjectCoverMaker appLang={appLang} />;
   }
   return <StandardDocumentToolsWorkspace toolId={toolId} toolName={toolName} appLang={appLang} />;
 };

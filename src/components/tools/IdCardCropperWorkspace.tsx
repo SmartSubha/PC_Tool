@@ -4,12 +4,15 @@ import * as pdfjsLib from 'pdfjs-dist';
 import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { printImageOnA4 } from '../../utils/printHelper';
 import { MultiIdGridCombiner } from './MultiIdGridCombiner';
+import { BulkPvcIdMaker } from './BulkPvcIdMaker';
+import type { AppLang } from '../../data/i18n';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 interface IdCardCropperWorkspaceProps {
   toolId: string;
   toolName: string;
+  appLang?: AppLang;
 }
 
 interface CropBox {
@@ -40,6 +43,9 @@ const DEFAULT_PRESETS: Record<string, { front: CropBox; back: CropBox; hint: str
 export const IdCardCropperWorkspace: React.FC<IdCardCropperWorkspaceProps> = (props) => {
   if (props.toolId === 'multi-id-a4-grid') {
     return <MultiIdGridCombiner />;
+  }
+  if (props.toolId === 'bulk-pvc-id-maker') {
+    return <BulkPvcIdMaker appLang={props.appLang || 'en'} />;
   }
   return <SingleIdCardCropperWorkspace {...props} />;
 };

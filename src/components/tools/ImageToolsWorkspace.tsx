@@ -19,9 +19,16 @@ import { DocWatermarkProtector } from './DocWatermarkProtector';
 import { BgRemoverWorkspace } from './BgRemoverWorkspace';
 import { BatchImageFixer } from './BatchImageFixer';
 import { DocStampSignPlacer } from './DocStampSignPlacer';
+import { CameraMetadataWorkspace } from './CameraMetadataWorkspace';
+import { WebcamPassportBlazer } from './WebcamPassportBlazer';
+import { SmartCamDeskewScanner } from './SmartCamDeskewScanner';
+import { ExamFormZipPacker } from './ExamFormZipPacker';
+import { OldPhotoRestorerStudio } from './OldPhotoRestorerStudio';
+import type { AppLang } from '../../data/i18n';
 
 interface ImageToolsWorkspaceProps {
   toolId: string;
+  lang?: AppLang;
 }
 
 function formatBytes(bytes: number): string {
@@ -52,7 +59,7 @@ function canvasToBlob(canvas: HTMLCanvasElement, mime: string, quality?: number)
   });
 }
 
-export const ImageToolsWorkspace: React.FC<ImageToolsWorkspaceProps> = ({ toolId }) => {
+export const ImageToolsWorkspace: React.FC<ImageToolsWorkspaceProps> = ({ toolId, lang = 'en' }) => {
   if (toolId === 'photo-signature-combiner') {
     return <PhotoSignatureCombiner />;
   }
@@ -67,6 +74,24 @@ export const ImageToolsWorkspace: React.FC<ImageToolsWorkspaceProps> = ({ toolId
   }
   if (toolId === 'doc-stamp-sign-placer') {
     return <DocStampSignPlacer />;
+  }
+  if (toolId === 'camera-shutter-count') {
+    return <CameraMetadataWorkspace mode="shutter" lang={lang} />;
+  }
+  if (toolId === 'image-metadata-extractor') {
+    return <CameraMetadataWorkspace mode="metadata" lang={lang} />;
+  }
+  if (toolId === 'webcam-passport-blazer') {
+    return <WebcamPassportBlazer appLang={lang} />;
+  }
+  if (toolId === 'smart-cam-deskew-scanner') {
+    return <SmartCamDeskewScanner appLang={lang} />;
+  }
+  if (toolId === 'exam-form-zip-packer') {
+    return <ExamFormZipPacker appLang={lang} />;
+  }
+  if (toolId === 'old-photo-restorer-studio') {
+    return <OldPhotoRestorerStudio appLang={lang} />;
   }
   return <StandardImageToolsWorkspace toolId={toolId} />;
 };
